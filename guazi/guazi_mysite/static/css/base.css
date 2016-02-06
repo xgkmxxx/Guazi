@@ -1,0 +1,44 @@
+.header ul{
+float:left;
+width:100%;
+padding:0;
+margin:0;
+list-style-type:none;    
+}
+.header a{
+float:right;
+width:7em;
+text-decoration:none;
+color:white;
+background-color:purple;
+padding:0.2em 0.6em;
+border-right:1px solid white;
+}
+.header a:hover {background-color:#ff3300}
+.header li{display:inline}
+
+.search-form{
+width: 100%;
+
+}
+
+table.table_result {
+    border: 1px solid #888888;
+    border-collapse: collapse;
+    font-family: Arial,Helvetica,sans-serif;
+    margin-top: 10px;
+    width: 100%;
+}
+table.table_result th {
+    background-color: #CCCCCC;
+    border: 1px solid #888888;
+    padding: 5px 15px 5px 5px;
+    text-align: left;
+    vertical-align: baseline;
+}
+table.table_result td {
+    background-color: #EFEFEF;
+    border: 1px solid #AAAAAA;
+    padding: 5px 15px 5px 5px;
+    vertical-align: text-top;
+}

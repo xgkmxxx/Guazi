@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+    {% block content %}
+    <h1>Sources of Guazi.com</h1>
+        <div class = "header">
+            <ul id = "nav-global">
+                <li id = "nav-homepage">
+                    <a href="/search/">搜索</a>
+                </li>
+            </ul>
+        </div>
+        <h2>All Results</h2>
+    <table class = "table_result">
+       <tr>
+           <th>name</th>
+           <th>city</th>
+           <th>time</th>
+           <th>mile</th>
+           <th>price</th>
+       </tr>
+        {% for guazi in guazi_list.object_list %}  
+           <tr>
+               <td>{{ guazi.name }}</td>
+               <td>{{ guazi.city }}</td>
+               <td>{{ guazi.time }}</td>
+               <td>{{ guazi.mile }}</td>
+               <td>{{guazi.price }}</td>
+        {% endfor %}
+    </table>    
+
+    <div class="paginatione">
+        <span class="step-links">
+            {% if guazi_list.has_previous %}
+                <a href="?page={{ guazi_list.previous_page_number }}" title="上一页">上一页</a>
+            {% endif %}    
+            {% for p in page_range %}
+                {% ifequal p guazi_list.number %}
+                    <span class="current">{{p}}</span>
+                {% else %}
+                    <a href="?page={{p}}" title ="第{{p}}页">{{p}}</a>
+                {% endifequal %}
+            {% endfor %}    
+            {% if guazi_list.has_next %}
+                <a href="?page={{ guazi_list.next_page_number}}" title="下一页">下一页</a>
+            {% endif %}
+        </span>    
+        <a>[这是{{ guazi_list.number }}/{{ guazi_list.paginator.num_pages}}页]</a>
+    </div>
+    {% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+    {% block content %}
+        {% block title %}
+            <title>search</title>
+        {% endblock %}
+        <h1>Guazi.com</h1>
+        <div class="waper">
+            <div class = "header">
+                <ul id = "nav-global">
+                    <li id = "nav-homepage">
+                        <a href="/guazi/">首页</a>
+                    </li>
+                    <li id = "nav-login">
+                        <a href = "/admin/">登录</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search">
+                <form action="." method="GET" class="search-form">
+                    <label for="q">Search: </label>
+                    <input type="text" name="q" value="{{ query }}">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+            {% if query %}
+                <h2>Results for "{{ query }}":</h2>
+            {% endif %} 
+            {% if result %}
+                <div id="result">
+                    <table class="table_result">
+                        <tr>
+                            <th>name</th>
+                            <th>city</th>
+                            <th>time</th>
+                            <th>mile</th>
+                            <th>price</th>
+                        </tr>
+                        {% for guazicar in result %}
+                            <tr>
+                                <td>{{ guazicar.name }}</td>
+                                <td>{{ guazicar.city }}</td>
+                                <td>{{ guazicar.time }}</td>
+                                <td>{{ guazicar.mile }}</td>
+                                <td>{{ guazicar.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>                      
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if result.has_previous %}
+                                <a href="?page={{ result.previous_page_number }}" title="上一页">上一页</a>
+                            {% endif %}
+                            {% for p in page_range %}
+                                {% ifequal p result.number %}
+                                    <span class="current">{{p}}</span>
+                                {% else %}
+                                    <a href="?page={{p}}" title ="第{{p}}页">{{p}}</a>
+                                {% endifequal %}
+                            {% endfor %} 
+                            {% if result.has_next %}
+                                <a href="?page={{ result.next_page_number}} "title="下一页">下一页</a>
+                            {% endif %} 
+                            <a>[这是{{ result.number }}/{{ result.paginator.num_pages}}页]</a>           
+                        </span>
+                    </div>
+                </div>
+            {% else %}
+                <p>没有记录</p>
+            {% endif %}
+        </div>
+    {% endblock %}
+
